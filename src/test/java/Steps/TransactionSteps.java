@@ -9,16 +9,16 @@ import org.openqa.selenium.WebDriver;
 
 
 public class TransactionSteps {
-    private WebDriver driver;
-    private HomePage homePage;
-    private ProductDetailPage detailPage;
-    private PaymentPage paymentPage;
-    private ShippingPage shippingPage;
-    private SuccessPage successPage;
+    private final WebDriver driver;
+    private final HomePage homePage;
+    private final ProductDetailPage detailPage;
+    private final PaymentPage paymentPage;
+    private final ShippingPage shippingPage;
+    private final SuccessPage successPage;
 
-    public TransactionSteps() {
-
-    }
+//    public TransactionSteps() {
+//
+//    }
     public TransactionSteps(BrowserSetup browserSetup) {
         this.driver = browserSetup.initializeDriver();
         this.homePage = new HomePage(driver);
@@ -34,22 +34,18 @@ public class TransactionSteps {
     }
 
     //-----------------Feature File Steps---------------------//
-    @Given("^I am on the product details page for \"(.*)\"$")
+    @Given("^I am on the product details page for (.*)")
     public void navigateToProductDetailsPage(String product) {
         homePage.chooseProduct(product);
         System.out.println("Navigating to the product details page for: " + product);
     }
 
     @When("^I add the product to the cart$")
-    public void addToCart() {
+    public void addToCart() throws InterruptedException{
         detailPage.setSizeL();
         detailPage.setColorOrg();
         detailPage.setAddCart();
-        try {
-            Thread.sleep(2000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
+        Thread.sleep(2000);
         detailPage.setShowCart();
         System.out.println("Adding the product to the cart");
     }
@@ -61,13 +57,8 @@ public class TransactionSteps {
     }
 
     @And("^I enter shipping details$")
-    public void enterShippingDetails() {
-        try {
-            Thread.sleep(2000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-
+    public void enterShippingDetails() throws InterruptedException {
+        Thread.sleep(2000);
         shippingPage.enterDefaultKeys();
         shippingPage.selectState(3);
         shippingPage.selectCountry(2);
@@ -84,12 +75,10 @@ public class TransactionSteps {
 
     @Then("^I should see a confirmation message$")
     public void verifyConfirmationMessage() {
+        successPage.waitForPageToLoad();
         successPage.assertConfirmationMessageDisplayed();
         successPage.assertOrderNumberDisplayed();
         successPage.assertOrderNumberFormat();
         System.out.println("Verifying the confirmation message");
-
-        // Close the browser
-        driver.quit();
     }
 }

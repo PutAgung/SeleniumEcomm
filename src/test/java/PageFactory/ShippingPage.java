@@ -28,7 +28,7 @@ public class ShippingPage {
     WebElement userCountry;
     @FindBy(id = "N0WW47V")
     WebElement userPhone;
-    @FindBy(css = "input[type='radio'][value='flatrate_flatrate']")
+    @FindBy(css = "input[type=radio][value=flatrate_flatrate]")
     WebElement flatRateRadioButton;
     @FindBy(css = "span[data-bind='i18n: \"Next\"']")
     WebElement nextButton;
@@ -43,7 +43,7 @@ public class ShippingPage {
         userFirstName.sendKeys("Putra");
         userLastName.sendKeys("Agung");
         userCompany.sendKeys("MyCompanyName");
-        userAddress.sendKeys("Jalan Kenegaraan");
+        userAddress.sendKeys("Jalan Swasembada");
         userCity.sendKeys("Jakarta");
         userZipCode.sendKeys("12345");
         userPhone.sendKeys("0812312323");

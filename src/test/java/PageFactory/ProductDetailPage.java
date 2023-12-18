@@ -12,7 +12,7 @@ public class ProductDetailPage {
     WebElement colorOrgBtn;
     @FindBy(id = "product-addtocart-button")
     WebElement addCartBtn;
-    @FindBy(className = "action showcart")
+    @FindBy(linkText = "My Cart")
     WebElement showCartBtn;
     @FindBy(id = "top-cart-btn-checkout")
     WebElement checkoutBtn;

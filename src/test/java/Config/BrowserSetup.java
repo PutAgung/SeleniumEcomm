@@ -9,7 +9,7 @@ public class BrowserSetup {
     private WebDriver driver;
     public WebDriver initializeDriver(){
         System.setProperty("webdriver.chrome.driver", "src/main/resources/drivers/chromedriver.exe");
-        WebDriverManager.chromedriver().browserVersion("120.0.6099.72").setup();
+        WebDriverManager.chromedriver().setup();
         ChromeOptions chromeOptions = new ChromeOptions();
         chromeOptions.addArguments("--start-maximized");
         driver = new ChromeDriver(chromeOptions);
@@ -20,5 +20,4 @@ public class BrowserSetup {
             driver.quit();
         }
     }
-
 }
