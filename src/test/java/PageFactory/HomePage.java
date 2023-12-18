@@ -7,8 +7,10 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
 public class HomePage {
-
     private WebDriver driver;
+
+    @FindBy(xpath = "//*[contains(text(), 'product')]")
+    private WebElement dynamicProduct;
 
     public HomePage(WebDriver driver) {
         this.driver = driver;
@@ -16,8 +18,7 @@ public class HomePage {
     }
 
     public void chooseProduct(String product) {
-        WebElement dynamicProduct =
-                driver.findElement(By.xpath("//*[contains(text(),'" + product + "')]"));
+      //  dynamicProduct = driver.findElement(By.xpath("//*[contains(text(),'" + product + "')]"));
         dynamicProduct.click();
     }
 }

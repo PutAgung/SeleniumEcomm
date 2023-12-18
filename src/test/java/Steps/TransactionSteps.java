@@ -6,6 +6,8 @@ import io.cucumber.java.Before;
 import io.cucumber.java.en.*;
 import org.openqa.selenium.WebDriver;
 
+
+
 public class TransactionSteps {
     private WebDriver driver;
     private HomePage homePage;
@@ -14,6 +16,9 @@ public class TransactionSteps {
     private ShippingPage shippingPage;
     private SuccessPage successPage;
 
+    public TransactionSteps() {
+
+    }
     public TransactionSteps(BrowserSetup browserSetup) {
         this.driver = browserSetup.initializeDriver();
         this.homePage = new HomePage(driver);
@@ -40,6 +45,11 @@ public class TransactionSteps {
         detailPage.setSizeL();
         detailPage.setColorOrg();
         detailPage.setAddCart();
+        try {
+            Thread.sleep(2000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
         detailPage.setShowCart();
         System.out.println("Adding the product to the cart");
     }
@@ -52,19 +62,34 @@ public class TransactionSteps {
 
     @And("^I enter shipping details$")
     public void enterShippingDetails() {
+        try {
+            Thread.sleep(2000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
 
+        shippingPage.enterDefaultKeys();
+        shippingPage.selectState(3);
+        shippingPage.selectCountry(2);
+        shippingPage.clickFlatRateRadioButton();
+        shippingPage.clickNextButton();
         System.out.println("Entering shipping details");
     }
 
     @And("^I complete the purchase$")
     public void completePurchase() {
-
+        paymentPage.setAddCart();
         System.out.println("Completing the purchase");
     }
 
     @Then("^I should see a confirmation message$")
     public void verifyConfirmationMessage() {
-
+        successPage.assertConfirmationMessageDisplayed();
+        successPage.assertOrderNumberDisplayed();
+        successPage.assertOrderNumberFormat();
         System.out.println("Verifying the confirmation message");
+
+        // Close the browser
+        driver.quit();
     }
 }

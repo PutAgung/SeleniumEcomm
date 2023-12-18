@@ -12,6 +12,10 @@ import org.junit.runner.RunWith;
         plugin = {"pretty", "html:target/cucumber-reports"}
 )
 public class TestRunner {
+    static {
+        // Set the ObjectFactory to PicoFactory
+        System.setProperty("cucumber.object-factory", "cucumber.runtime.java.picocontainer.PicoFactory");
+    }
     private static BrowserSetup browserSetup;
     @AfterClass
     public static void tearDown() {

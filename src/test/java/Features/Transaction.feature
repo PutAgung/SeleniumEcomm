@@ -9,3 +9,4 @@ Feature: Transaction functionality
     Examples:
     | product |
     | Radiant Tee |
+    | Breathe-Easy Tank |
