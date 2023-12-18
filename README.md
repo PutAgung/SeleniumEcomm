@@ -1,6 +1,6 @@
 # Selenium E-commerce Automation Framework
 
-This is a Selenium-based automation framework for e-commerce web testing using Java, JUnit, and Cucumber. The project is organized with a clear directory structure to facilitate maintainability and readability.
+This is a Selenium-based automation framework for this https://magento.softwaretestingboard.com/, an e-commerce web testing using Java, JUnit, and Cucumber. The project is organized with a clear directory structure to facilitate maintainability and readability.
 
 ## Project Hierarchy
 
